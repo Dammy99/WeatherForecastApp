@@ -12,7 +12,7 @@
 <script src="~/js/storagescripts.js"></script>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <>Here you can see your prvevious app search. Close app and run it again</>
+    <p>Here you can see your prvevious app search. Close app and run it again</p>
     <div id="propertiesList"></div>
 
     <script>
@@ -34,7 +34,8 @@
                 var propertyDiv = document.createElement("div");
 
                 var propertyName = document.createElement("span");
-                propertyName.textContent = "City" + ": " + oldStorage[property].LocalizedName;
+                propertyName.textContent = "City" + ": " + oldStorage[property].LocalizedName + "," 
+                    + oldStorage[property].AdministrativeArea;
                 propertyDiv.appendChild(propertyName);
 
                 var paramLink = document.createElement("a");

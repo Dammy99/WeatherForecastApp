@@ -39,10 +39,6 @@ namespace WeatherForecastApp.Controllers
             return View("Index", city);
         }
 
-        public IActionResult Search()
-        {
-            return View();
-        }
 
         private async Task GetCityDataAsync(string query, City city)
         {
