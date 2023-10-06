@@ -1,0 +1,54 @@
+﻿@model City
+
+@{
+    ViewData["Title"] = "City details";
+}
+<script src="~/js/storagescripts.js"></script>
+
+<div class="text-center">
+    <h1>City Information about</h1>
+    <h2>@Model.LocalizedName, @Model.AdministrativeArea, @Model.Country</h2>
+    <div class="forecast-table">
+        <div class="table-body">
+            <div class="block-gap">
+                <strong>Max Temperature: </strong>
+                <p>@Model.MaxTemperature°C</p>
+            </div>
+            <div class="block-gap">
+                <strong>Min Temperature: </strong>
+                <p>@Model.MinTemperature°C</p>
+            </div>
+            <section class="block-gap">
+                <section class="block-column">
+                    <div class="block-gap">
+                        <strong>Has Precipitation (Day): </strong>
+                        <p>@(Model.HasPresipitationDay ? "Yes" : "No")</p>
+                    </div>
+                    <div class="block-gap">
+                        @if (Model.PrecipitationTypeDay != null)
+                        {
+                            <strong>Precipitation Type (Day): </strong>
+                            <p>@Model.PrecipitationTypeDay</p>
+                        }
+                    </div>
+                </section>
+                <section class="block-column">
+                    <div class="block-gap">
+                        <strong>Has Precipitation (Night): </strong>
+                        <p>@(Model.HasPresipitationNight ? "Yes" : "No")</p>
+                    </div>
+                    <div class="block-gap">
+                        @if (Model.PrecipitationTypeNight != null)
+                        {
+                            <strong>Precipitation Type (Night): </strong>
+                            <p>@Model.PrecipitationTypeNight</p>
+                        }
+                    </div>
+                </section>
+            </section>
+        </div>
+        <script>
+            weatherScript.setStorage(@Html.Raw(ViewBag.CityJson));
+        </script>
+    </div>
+</div>

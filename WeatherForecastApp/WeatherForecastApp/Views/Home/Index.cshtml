@@ -1,0 +1,50 @@
+﻿@model string
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+    <script>
+        var myObject = { Property1: "Value1", Property2: "Value2", Property3: "Value3" };
+    </script>
+</head>
+<script src="~/js/storagescripts.js"></script>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <>Here you can see your prvevious app search. Close app and run it again</>
+    <div id="propertiesList"></div>
+
+    <script>
+
+        const bool = @Html.Raw((ViewBag.IsFirstRun));
+        console.log(bool);
+
+        if (@Html.Raw((ViewBag.IsFirstRun))) {
+            weatherScript.updateOldStorage();
+            const ke = weatherScript.getStorage();
+        }
+
+        var oldStorage = weatherScript.getStorage();
+
+        var propertiesList = document.getElementById("propertiesList");
+        for (var property in oldStorage) {
+            if (oldStorage.hasOwnProperty(property)) {
+                console.log(property + " = " + oldStorage[property]);
+                var propertyDiv = document.createElement("div");
+
+                var propertyName = document.createElement("span");
+                propertyName.textContent = "City" + ": " + oldStorage[property].LocalizedName;
+                propertyDiv.appendChild(propertyName);
+
+                var paramLink = document.createElement("a");
+                paramLink.textContent = "Watch forecast now";
+                console.log(oldStorage[property].Key);
+                paramLink.href = "/City/Index?q=" + oldStorage[property].LocalizedName;
+                propertyDiv.appendChild(paramLink);
+
+                propertiesList.appendChild(propertyDiv);
+            }
+        }
+    </script>
+</div>
